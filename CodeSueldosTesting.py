@@ -228,28 +228,7 @@ if 'BD' in nombres_hojas:
                     exists_pdf = True  
                     
                     text = extract_text_from_pdf(f'{pdf_path}/{p}')  
-                     
-                    # Suma_de_Rem_1 = text.split('\nSuma de Rem. 1: ')[1].split('\nfalseado información que deba')[0]
-                    # Suma_de_Rem_2 = text.split('\nSuma de Rem. 2: ')[1].split('\ncontener esta declaración, siendo fiel\nDeclaración Jurada')[0]
-                    # Suma_de_Rem_3 = text.split('Suma de Rem. 3: ')[1].split('\nPesos con centavos expresión de la verdad.\n')[0]
-                    # Suma_de_Rem_4 = text.split('Suma de Rem. 4: ')[1].split('\nS.U.S.S.')[0]
-                    # Suma_de_Rem_5 = text.split('Suma de Rem. 5: ')[1].split('\nSuma de Rem. 6:')[0]
-                    # Suma_de_Rem_6 = text.split('Suma de Rem. 6: ')[1].split('\nApellido y Nombre o Razón Social: ')[0]
-                    # Suma_de_Rem_7 = text.split('Suma de Rem. 7: ')[1].split('\nVerificador:\n')[0]
-                    # Suma_de_Rem_8 = text.split('Suma de Rem. 8: ')[1].split('\nSuma de Rem. 9:')[0]
-                    # Suma_de_Rem_9 = text.split('Suma de Rem. 9: ')[1].split('\nSuma de Rem. 10:')[0]
-                    # Suma_de_Rem_10 = text.split('Suma de Rem. 10: ')[1].split('\nDomicilio Fiscal:')[0]
-                    # Contribuciones_de_Seguridad_Social = text.split ('Contribuciones de Seguridad Social')[1].split('-')[0]
-                    # Aportes_de_Obra_Social = text.split ('Aportes de Obra Social')[1].split('\n301')[0]
-                    # Aportes_de_Seguridad_Social = text.split ('Aportes de Seguridad Social')[1].split('- Vales Alimentarios')[0]
-                    # Contribuciones_de_Obra_Social = text.split ('Contribuciones de Obra Social')[1].split('- Seguro Colectivo')[0]
-                    # L_R_T = text.split ('L.R.T.')[1].split('\n352')[0]
-                    # Seguro_Colectivo_de_Vida_Obligatorio = text.split ('Seguro Colectivo de Vida Obligatorio')[1].split('\n935')[0]
-                    #texto = Suma_de_Rem_1         
-                    #patron = r"\d+\s(.+?)\s\d+\.\d+%"
-                    #resultado = re.search(patron, texto)
-                    #if resultado:
-                    #    parte_deseada = resultado.group(1)
+                
 
                     for indice,valor in enumerate(range(celda_indexddjj, celda_indexddjj+9)):
                         base_writer(hoja_base2, valor-1, 'A', fecha)
@@ -266,111 +245,9 @@ if 'BD' in nombres_hojas:
                         
                     celda_indexddjj += 10
                             
-                    # base_writer(hoja_base2, celda_indexddjj, 'A', fecha)
-                    # base_writer(hoja_base2, celda_indexddjj, 'B', c.Responsable)
-                    # base_writer(hoja_base2, celda_indexddjj, 'C', c.CUIT_PJ)
-                    # base_writer(hoja_base2, celda_indexddjj, 'D', c.Contribuyente)
-                    # base_writer(hoja_base2, celda_indexddjj, 'E', "Suma de Rem. 1")
-                    # base_writer(hoja_base2, celda_indexddjj, 'F',  Suma_de_Rem_1)
-                    # base_writer(hoja_base2, celda_indexddjj, 'G', "351")
-                    # base_writer(hoja_base2, celda_indexddjj, 'H', "Contribuciones de Seguridad Social")
-                    # base_writer(hoja_base2, celda_indexddjj, 'I', Contribuciones_de_Seguridad_Social)
-                    # celda_indexddjj += 1
-                    # base_writer(hoja_base2, celda_indexddjj, 'A', fecha)
-                    # base_writer(hoja_base2, celda_indexddjj, 'B', c.Responsable)
-                    # base_writer(hoja_base2, celda_indexddjj, 'C', c.CUIT_PJ)
-                    # base_writer(hoja_base2, celda_indexddjj, 'D', c.Contribuyente)
-                    # base_writer(hoja_base2, celda_indexddjj, 'E', "Suma de Rem. 2")
-                    # base_writer(hoja_base2, celda_indexddjj, 'F',  Suma_de_Rem_2)
-                    # base_writer(hoja_base2, celda_indexddjj, 'G', "302")
-                    # base_writer(hoja_base2, celda_indexddjj, 'H', "Aportes de Obra Social")
-                    # base_writer(hoja_base2, celda_indexddjj, 'I', Aportes_de_Obra_Social)
-                    
-                    # celda_indexddjj += 1
-                    # base_writer(hoja_base2, celda_indexddjj, 'A', fecha)
-                    # base_writer(hoja_base2, celda_indexddjj, 'B', c.Responsable)
-                    # base_writer(hoja_base2, celda_indexddjj, 'C', c.CUIT_PJ)
-                    # base_writer(hoja_base2, celda_indexddjj, 'D', c.Contribuyente)
-                    # base_writer(hoja_base2, celda_indexddjj, 'E', "Suma de Rem. 3")
-                    # base_writer(hoja_base2, celda_indexddjj, 'F',  Suma_de_Rem_3)
-                    # base_writer(hoja_base2, celda_indexddjj, 'G', "301")
-                    # base_writer(hoja_base2, celda_indexddjj, 'H', "Aportes de Seguridad Social")
-                    # base_writer(hoja_base2, celda_indexddjj, 'I', Aportes_de_Seguridad_Social)
-                    
-                    # celda_indexddjj += 1
-                    # base_writer(hoja_base2, celda_indexddjj, 'A', fecha)
-                    # base_writer(hoja_base2, celda_indexddjj, 'B', c.Responsable)
-                    # base_writer(hoja_base2, celda_indexddjj, 'C', c.CUIT_PJ)
-                    # base_writer(hoja_base2, celda_indexddjj, 'D', c.Contribuyente)
-                    # base_writer(hoja_base2, celda_indexddjj, 'E', "Suma de Rem. 4")
-                    # base_writer(hoja_base2, celda_indexddjj, 'F',  Suma_de_Rem_4)
-                    # base_writer(hoja_base2, celda_indexddjj, 'G', "352")
-                    # base_writer(hoja_base2, celda_indexddjj, 'H', "Contribuciones de Obra Social")
-                    # base_writer(hoja_base2, celda_indexddjj, 'I', Contribuciones_de_Obra_Social)
-                    
-                    # celda_indexddjj += 1
-                    # base_writer(hoja_base2, celda_indexddjj, 'A', fecha)
-                    # base_writer(hoja_base2, celda_indexddjj, 'B', c.Responsable)
-                    # base_writer(hoja_base2, celda_indexddjj, 'C', c.CUIT_PJ)
-                    # base_writer(hoja_base2, celda_indexddjj, 'D', c.Contribuyente)
-                    # base_writer(hoja_base2, celda_indexddjj, 'E', "Suma de Rem. 5")
-                    # base_writer(hoja_base2, celda_indexddjj, 'F',  Suma_de_Rem_5)
-                    # base_writer(hoja_base2, celda_indexddjj, 'G', "312")
-                    # base_writer(hoja_base2, celda_indexddjj, 'H', "L.R.T.")
-                    # base_writer(hoja_base2, celda_indexddjj, 'I',  L_R_T)
-                    
-                    # celda_indexddjj += 1
-                    # base_writer(hoja_base2, celda_indexddjj, 'A', fecha)
-                    # base_writer(hoja_base2, celda_indexddjj, 'B', c.Responsable)
-                    # base_writer(hoja_base2, celda_indexddjj, 'C', c.CUIT_PJ)
-                    # base_writer(hoja_base2, celda_indexddjj, 'D', c.Contribuyente)
-                    # base_writer(hoja_base2, celda_indexddjj, 'E', "Suma de Rem. 6")
-                    # base_writer(hoja_base2, celda_indexddjj, 'F',  Suma_de_Rem_6)
-                    # base_writer(hoja_base2, celda_indexddjj, 'G', "028")
-                    # base_writer(hoja_base2, celda_indexddjj, 'H', "Seguro Colectivo de Vida Obligatorio")
-                    # base_writer(hoja_base2, celda_indexddjj, 'I', Seguro_Colectivo_de_Vida_Obligatorio)
-                    
-                    # celda_indexddjj += 1
-                    # base_writer(hoja_base2, celda_indexddjj, 'A', fecha)
-                    # base_writer(hoja_base2, celda_indexddjj, 'B', c.Responsable)
-                    # base_writer(hoja_base2, celda_indexddjj, 'C', c.CUIT_PJ)
-                    # base_writer(hoja_base2, celda_indexddjj, 'D', c.Contribuyente)
-                    # base_writer(hoja_base2, celda_indexddjj, 'E', "Suma de Rem. 7")
-                    # base_writer(hoja_base2, celda_indexddjj, 'F',  Suma_de_Rem_7)
-                    
-                    # celda_indexddjj += 1
-                    # base_writer(hoja_base2, celda_indexddjj, 'A', fecha)
-                    # base_writer(hoja_base2, celda_indexddjj, 'B', c.Responsable)
-                    # base_writer(hoja_base2, celda_indexddjj, 'C', c.CUIT_PJ)
-                    # base_writer(hoja_base2, celda_indexddjj, 'D', c.Contribuyente)
-                    # base_writer(hoja_base2, celda_indexddjj, 'E', "Suma de Rem. 8")
-                    # base_writer(hoja_base2, celda_indexddjj, 'F',  Suma_de_Rem_8)
-                
-                    # celda_indexddjj += 1
-                    # base_writer(hoja_base2, celda_indexddjj, 'A', fecha)
-                    # base_writer(hoja_base2, celda_indexddjj, 'B', c.Responsable)
-                    # base_writer(hoja_base2, celda_indexddjj, 'C', c.CUIT_PJ)
-                    # base_writer(hoja_base2, celda_indexddjj, 'D', c.Contribuyente)
-                    # base_writer(hoja_base2, celda_indexddjj, 'E', "Suma de Rem. 9")
-                    # base_writer(hoja_base2, celda_indexddjj, 'F',  Suma_de_Rem_9)
-                    
-                    # celda_indexddjj += 1
-                    # base_writer(hoja_base2, celda_indexddjj, 'A', fecha)
-                    # base_writer(hoja_base2, celda_indexddjj, 'B', c.Responsable)
-                    # base_writer(hoja_base2, celda_indexddjj, 'C', c.CUIT_PJ)
-                    # base_writer(hoja_base2, celda_indexddjj, 'D', c.Contribuyente)
-                    # base_writer(hoja_base2, celda_indexddjj, 'E', "Suma de Rem. 10")
-                    # base_writer(hoja_base2, celda_indexddjj, 'F',  Suma_de_Rem_10)
-                    
-                    # celda_indexddjj += 1
-                
-                    
             #Cerrar el archivo excel para terminar la edicion (close)
             #TODO close function
-                                    
-                                    
-
-                
+                                      
 
         except FileNotFoundError:
             celda_logs = hoja_logs[f'A{index}']
