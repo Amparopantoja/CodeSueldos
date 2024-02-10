@@ -9,7 +9,6 @@ import re
 import tabula
 
 
-
 def extract_text_from_pdf(pdf_path):
     extracted_text = ""
 
@@ -34,7 +33,7 @@ class NominaLaboral:
         self.juris_desc = juris_desc
         self.imp_determinado = imp_determinado
         self.saldo_favor = saldo_favor
-        
+
 class Columna_ddjj:
     def __init__(self, code, field, name):
         self.code = code
@@ -51,7 +50,6 @@ FIELD_ARRAY = [Columna_ddjj('351', '\nfalseado información que deba', 'Contribu
                Columna_ddjj('', '\nSuma de Rem. 9:', ''),
                Columna_ddjj('', '\nSuma de Rem. 10:', ''),
                Columna_ddjj('', '\nDomicilio Fiscal:', '')]
-    
 
 def estandarizarnombre(nombreCliente):
     nombreCliente = nombreCliente.replace("&", "")
@@ -80,13 +78,12 @@ def get_excel_values(index, text):
         return text.split ('Seguro Colectivo de Vida Obligatorio')[1].split('\n935')[0]
     else : 
         return ''
-    
 #Variable del Nombre del archivo
 fileName = "NominaLaboral.xlsx"
 #Variable del Nombre de la hoja
 sheetName = 'BD'
 #Variable de fecha de Declaraciones juradas a ejecutar
-fecha = '11/2023'    
+fecha = '12/2023'    
 
 #Variable del Nombre del excel
 #TODO Add excel path
@@ -173,7 +170,7 @@ if 'BD' in nombres_hojas:
                 celda_logs = hoja_logs[f'A{index}']
                 
             
-                if ('F931 NOMINA' in p.upper() or 'NOMINA' in p.upper()) and 'ACUSE' not in p.upper():
+                if ('F931 NOMINA' in p.upper() or 'NOMINA' in p.upper()) and '.PDF' in p.upper() and 'ACUSE' not in p.upper():
                     exists_pdf = True
                 
                     archivo_pdf = f'{pdf_path}/{p}'
@@ -228,36 +225,37 @@ if 'BD' in nombres_hojas:
                     exists_pdf = True  
                     
                     text = extract_text_from_pdf(f'{pdf_path}/{p}')  
-                
-
-                    for indice,valor in enumerate(range(celda_indexddjj, celda_indexddjj+9)):
-                        base_writer(hoja_base2, valor-1, 'A', fecha)
-                        base_writer(hoja_base2, valor-1, 'B', c.Responsable)
-                        base_writer(hoja_base2, valor-1, 'C', c.CUIT_PJ)
-                        base_writer(hoja_base2, valor-1, 'D', c.Contribuyente)
-                        base_writer(hoja_base2, valor-1, 'E', "Suma de Rem. "+str(indice+1))
-                        base_writer(hoja_base2, valor-1, 'F', text.split('Suma de Rem. '+ str(indice+1) + ': ')[1].split(FIELD_ARRAY[indice].field)[0])
+                     
+                    for indice,valor in enumerate(range(celda_indexddjj, celda_indexddjj+10)):
+                        base_writer(hoja_base2, valor, 'A', fecha)
+                        base_writer(hoja_base2, valor, 'B', c.Responsable)
+                        base_writer(hoja_base2, valor, 'C', c.CUIT_PJ)
+                        base_writer(hoja_base2, valor, 'D', c.Contribuyente)
+                        base_writer(hoja_base2, valor, 'E', "Suma de Rem. "+str(indice+1))
+                        base_writer(hoja_base2, valor, 'F', text.split('Suma de Rem. '+ str(indice+1) + ': ')[1].split(FIELD_ARRAY[indice].field)[0])
                        
                         if indice <= 5: 
-                            base_writer(hoja_base2, i+1, 'G', FIELD_ARRAY[indice].code)
-                            base_writer(hoja_base2, i+1, 'H', FIELD_ARRAY[indice].name)
-                            base_writer(hoja_base2, i+1, 'I', get_excel_values(indice+1, text))
+                            base_writer(hoja_base2, valor, 'G', FIELD_ARRAY[indice].code)
+                            base_writer(hoja_base2, valor, 'H', FIELD_ARRAY[indice].name)
+                            base_writer(hoja_base2, valor, 'I', get_excel_values(indice+1, text))
                         
                     celda_indexddjj += 10
-                            
+
+                
+                    
             #Cerrar el archivo excel para terminar la edicion (close)
-            #TODO close function
-                                      
+            #TODO close function    
 
         except FileNotFoundError:
             celda_logs = hoja_logs[f'A{index}']
-            celda_logs.value = f'El cliente {c.Contribuyentel} no se pudo encontrar dentro de la carpeta WNS'
+            celda_logs.value = f'El cliente {c.Contribuyente} no se pudo encontrar dentro de la carpeta WNS'
         except IndexError:
             celda_logs = hoja_logs[f'A{index}']
             celda_logs.value = f'El pdf del cliente {c.Contribuyente} es incorrecto'
         except OSError:
             celda_logs = hoja_logs[f'A{index}']
             celda_logs.value = f'Error, la ruta es incorrecta para {c.Contribuyente}'
+       
             
     book.save(fileName)
     book.close()
